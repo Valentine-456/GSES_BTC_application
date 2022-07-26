@@ -2,7 +2,9 @@
   "extends": "fastify-tsconfig",
   "compilerOptions": {
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "noUnusedLocals": false,                /* Report errors on unused locals. */
+    "noUnusedParameters": false
   },
   "include": ["src/**/*.ts"]
 }

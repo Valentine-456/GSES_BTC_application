@@ -1,5 +1,6 @@
 import { join } from 'path';
 import AutoLoad, {AutoloadPluginOptions} from '@fastify/autoload';
+import fastifyEnv from '@fastify/env';
 import { FastifyPluginAsync } from 'fastify';
 
 export type AppOptions = {
@@ -26,8 +27,14 @@ const app: FastifyPluginAsync<AppOptions> = async (
   // define your routes in one of these
   void fastify.register(AutoLoad, {
     dir: join(__dirname, 'routes'),
-    options: opts
+    options: {...opts, prefix: '/api'}
   })
+
+  // This sets ENV variables during development
+  fastify.register(fastifyEnv, { 
+    schema: {},
+    dotenv: true,
+   })
 
 };
 
