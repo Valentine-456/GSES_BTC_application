@@ -13,8 +13,7 @@ class Subscribtion implements SubscribtionInterface {
 
     constructor(email: String) {
         this._id = randomUUID();
-        this.email = email
-        console.log(email, this._id)
+        this.email = email;
     }
 
     static async findMany(): Promise<Array<Subscribtion>> {
