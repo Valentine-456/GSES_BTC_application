@@ -11,14 +11,11 @@ export default subscribe
 // Controllers are here
 
 async function getSubscription(request: FastifyRequest<{ Body: ISubscribeBody }>, reply: FastifyReply) {
-    const email = request.body.email
-    const emailRegEx =/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    if(!emailRegEx.test(email)) 
-        return reply.badRequest("Email validation was not passed");
+    if(request.validationError) return reply.badRequest("Email validation was not passed");
 
+    const {email} = request.body
     const candidate = await Subscribtion.findOneByEmail(email)
-    if(candidate)
-        return reply.conflict("This email is already registered!")
+    if(candidate) return reply.conflict("This email is already registered!")
     
     await new Subscribtion(email).save();
     return {status: "success", message: "This email is added"}
