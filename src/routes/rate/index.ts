@@ -25,3 +25,4 @@ async function getCurrencyRate(request: any, reply: any) {
         return reply.badRequest("Invalid status value")
     }
 }
+

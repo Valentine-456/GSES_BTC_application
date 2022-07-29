@@ -3,15 +3,15 @@ import {resolve} from "path"
 import {randomUUID} from "crypto";
 
 interface SubscribtionInterface {
-    "_id": String,
-    "email": String,
+    "_id": string,
+    "email": string,
 }
 
 class Subscribtion implements SubscribtionInterface {
-    _id: String;
-    email: String;
+    _id: string;
+    email: string;
 
-    constructor(email: String) {
+    constructor(email: string) {
         this._id = randomUUID();
         this.email = email;
     }
