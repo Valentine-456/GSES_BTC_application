@@ -65,4 +65,5 @@ test/types/index.js
 dist
 
 *.env
+!.env
 !config.example.env
