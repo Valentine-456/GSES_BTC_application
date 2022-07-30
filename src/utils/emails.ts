@@ -1,11 +1,13 @@
 import {createTransport} from "nodemailer";
 
+const pass = `${process.env.API_KEY_1}${process.env.API_KEY_2}`
+
 const nodemailer = createTransport({
     host: "smtp.sendgrid.net",
     port: 25,
     auth: {
       user: "apikey",
-      pass: process.env.SENDGRID_API_KEY,
+      pass: pass,
     },
     tls: {
         rejectUnauthorized: false
